@@ -1,0 +1,5 @@
+<nav class="nav flex-row nav-tabs justify-content-end pt-2">
+	<?php foreach($_SESSION['current_user']['menu'] as $menu) : ?>
+	<a class="nav-item nav-link <?= str_contains($_SERVER['REQUEST_URI'],$menu['url']) ? "active\"" : "text-white\"" ?>" href="<?= $menu['url'] ?>"><?= $menu['label'] ?></a>
+	<?php endforeach ?>
+</nav>

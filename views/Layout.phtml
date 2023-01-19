@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+	<head>
+		<base href="/localhost" />
+		<meta charset="UTF-8" />
+		<title><?= $title ?></title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+        <link rel="stylesheet" href="css/main.css" type="text/css"/>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+		<script src="js/FormValidations.js"></script>
+	</head>
+	<body>
+	    <header class="text-white">
+            <h1 class="py-3 text-center">Virtuální pojišťovna MŘ</h1>
+			<p class="p-2 user-label"><?= isset($_SESSION['current_user']['email']) ? $_SESSION['current_user']['email'] : "" ?></p>
+			<a class="help" href="/resources/doc/index.html" target="_blank">?</a>
+		</header>
+		<article>
+			<?php if(isset($_SESSION['current_user']['menu'])) require_once('Menu.phtml'); ?>
+            <div class="row justify-content-center">
+                <div class="col-lg-11 col-xl-8 pt-2"><h3 class="py-3"><?= $title ?></h3></div>
+            </div>
+            <?php
+				foreach($messages as $message) // výpis systémových hlášení
+					echo "<p class=\"d-flex justify-content-center py-4\">$message</p>";
+				$this->myController->getView(); // vložení aktuálního pohledu do šablony 
+			?>
+		</article>
+		<div class="py-3"></div>		
+		<footer class="fixed-bottom text-white">
+		  <div class="text-center p-3">
+			Pojekt ke zkoušce Programátor PHP - vytvořil ©Martin Řehůřek 2022
+		  </div>
+		</footer>
+	</body>
+</html>

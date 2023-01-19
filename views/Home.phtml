@@ -1,0 +1,4 @@
+<?php require_once('Menu.phtml'); ?>
+
+<h3 class="d-flex justify-content-center py-5">Uživatel <?= $email ?> má <?= $usersStats[0] ?> aktivních smluv a <?= $usersStats[1] ?> pojistných událostí.</h3>
+<?= $role_id < 5 ? "<h3 class=\"d-flex justify-content-center py-5\">V systému je $productsStats[2] produktů, $productsStats[0] aktivních smluv a bylo zaevidováno $productsStats[1] pojistných událostí celkem.</h3>" : "" ?>

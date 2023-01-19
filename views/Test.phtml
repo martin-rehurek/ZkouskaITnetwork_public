@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+	<div class="col-lg-11 col-xl-8 ">
+	<?php
+	$table = "dbc_users";
+	$key = "id";
+	$id = $user['id'];
+	//$params = array('fname' => $user['fname'], 'lname' => $user['lname']);
+	$params = array('fname' => 'Martin', 'lname' => 'Rehurek');
+	$params_flipped = array_flip($params);
+	$query = "UPDATE `$table` SET";
+	//echo $user['fname'].' '.$user['lname'];
+	//print_r($user); echo '<br />';
+	//print_r($params); echo '<br />';
+	echo "INSERT INTO `$table` (`".
+            implode('`, `', array_keys($params)).
+            "`) VALUES (".str_repeat('?,', sizeOf($params)-1)."?)<br />";
+	print_r(array_values($params)); echo '<br />';
+	foreach($params_flipped as $item){
+		$query .= " $item = ?";
+	}
+	$query .= " WHERE `$table`.`$key` = $id";
+	echo $query.'<br />'; //.str_repeat(' array_keys($params) = ? ', sizeOf($params))." = ",array_values($params)." WHERE `$table`.`$key` = $id";
+
+    $whereAmI = mb_strtolower(get_class($this));
+    $whereAmI = str_replace("classes\controllers\\", "", $whereAmI);
+    $whereAmI = str_replace("_c", "", $whereAmI);
+    echo("Jsem objekt: ".$whereAmI."<br />");
+
+    $poleMenu = $_SESSION['current_user']['menu'];
+    foreach($poleMenu as $item){
+        $allowedUrls[] = $item['url'];
+    }
+    //print_r($allowedUrls);
+
+    echo "<br />";
+    var_dump(in_array($whereAmI, $allowedUrls));
+    echo "<br />";
+    var_dump(in_array('home', $allowedUrls));
+    echo "<br />";
+
+    $array1 = array("red", "a" => "green");
+	$array2 = array("a" => "green", "b" => "brown", "c" => "blue", "red");
+	
+	$result = array_diff_assoc($array1, $array2);
+	print_r($result);
+	echo '<br />';
+	$result = array_diff_assoc($array1, $array2);
+	print_r($result);
+	?>
+	</div>
+</div>

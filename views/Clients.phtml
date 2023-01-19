@@ -1,0 +1,30 @@
+<div class="row justify-content-center">
+	<div class="col-lg-11 col-xl-8 pt-2">
+		<table class="table table-striped table-hover">
+			<thead class="thead-light">
+				<tr>
+					<th>Jméno</th>
+					<th>Přímení</th>
+					<th>E-mail</th>
+					<th>Tel. č.</th>
+                    <th>Role</th>
+                    <th>Status</th>
+					<th>Akce</th>
+				</tr>
+			</thead>	
+			<tbody>
+				<?php foreach($clients as $client) : ?>
+					<tr>
+						<td><?= $client['fname'] ?></td>
+						<td><?= $client['lname'] ?></td>
+						<td><?= $client['email'] ?></td>
+						<td><?= $client['phone'] ?></td>
+                        <td><?= $client['role'] ?></td>
+						<td><?= $client['status'] ?></td>
+						<td><a class="btn btn-secondary" href="profile/<?= $client['id'] ?>">Upravit údaje</a></td>						
+					</tr>
+				<?php endforeach ?>
+			</tbody>
+		</table>
+	</div>
+</div>

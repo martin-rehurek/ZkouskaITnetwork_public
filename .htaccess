@@ -1,0 +1,23 @@
+# zapnuti presmerovaciho engine
+RewriteEngine On
+
+# nektere webservery bez tohoto prepinace nefunguji
+# RewriteBase /
+
+# presmerovani na https
+# RewriteCond %{HTTPS} off 
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# presmerujeme jen pokud slozka nebo soubor skutesne neexistuji
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# vse az na vyjimky presmetujeme na index.php
+RewriteRule !\.(css|js|icon|zip|rar|png|jpg|gif|pdf)$ index.php [L]
+
+AddType application/x-httpd-php .php .phtml
+
+#presmerovani chyby 404 na chybovou hlasku - toto budu chytat v kontroleru
+#ErrorDocument 404 /404.php
+
+php_value upload_max_filesize 100M
+php_value post_max_size 100M
